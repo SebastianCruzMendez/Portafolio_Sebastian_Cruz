@@ -1,0 +1,620 @@
+/* ==========================================================================
+   PORTAFOLIO SCM - ESTÉTICA FLUIDA & MODERN VINTAGE
+   ========================================================================== */
+
+/* --- 00. VARIABLES GLOBALES Y RESET --- */
+:root {
+  /* Fondo profundo basado en el negro #0D0D0D con máxima elegancia y contraste */
+  --synth-bg: #0d0d0d;          
+  --synth-card: rgba(140, 128, 166, 0.08); /* Tarjeta translúcida con el matiz de #8C80A6 */
+  
+  /* Integración exacta de tu nueva paleta mapeada para alto impacto y diferenciación */
+  --neon-pink: #8C031C;         /* Rojo vino profundo para acentos principales, bordes y alertas */
+  --neon-cyan: #D3BDF2;         /* Lavanda pastel brillante para títulos, códigos y elementos clave */
+  --neon-yellow: #BCF2A2;       /* Verde lima pastel para llamadas a la acción, botones y estados activos */
+  
+  /* Colores de soporte directo de tu paleta */
+  --color-purple: #8C80A6;      /* Púrpura apagado para etiquetas y elementos secundarios */
+
+  --text-main: #f3eeff;         /* Blanco con sutil matiz lavanda para lectura nítida */
+  --text-muted: #8c80a6;        /* Tono secundario de soporte para descripciones */
+  --line-synth: rgba(211, 189, 242, 0.18);
+}
+html {
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: var(--synth-bg);
+  color: var(--text-main);
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+}
+
+
+/* --- 01. UTILIDADES Y ANIMACIONES FLUIDAS --- */
+.z-index-2 { z-index: 2; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.15s; }
+.delay-2 { transition-delay: 0.3s; }
+
+@keyframes blink { 50% { opacity: 0; } }
+
+@keyframes gridMove80 {
+  0% { transform: perspective(500px) rotateX(65deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(65deg) translateY(40px); }
+}
+
+
+/* --- 02. NAVEGACIÓN FLUIDA --- */
+.cyber-nav {
+  background: rgba(9, 3, 30, 0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 0, 127, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-main) !important;
+  font-size: 1.1rem;
+}
+
+.navbar-brand .neon-text {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+  margin-right: 5px;
+}
+
+.nav-link {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-muted) !important;
+  font-size: 0.9rem;
+  margin: 0 0.5rem;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  padding: 0.4rem 0.8rem;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--neon-yellow) !important;
+  background: rgba(254, 231, 21, 0.08);
+  text-shadow: 0 0 8px rgba(254, 231, 21, 0.4);
+}
+
+.custom-toggler i {
+  color: var(--neon-pink);
+  font-size: 1.5rem;
+}
+
+
+/* --- 03. HERO Y CONTENEDOR FLUIDO --- */
+.hero {
+  position: relative;
+  min-height: calc(100vh - 70px); /* Resta exactamente la altura de la barra de navegación */
+  padding: 2rem 0; /* Reduce drásticamente el espacio superior */
+  display: flex;
+  align-items: center;
+  background: radial-gradient(circle at top center, #13131a 0%, var(--cyber-bg) 100%);
+  overflow: hidden;
+}
+
+.min-vh-75 {
+  min-height: auto; 
+}
+
+.grid-perspective {
+  position: absolute;
+  bottom: -10%; 
+  left: -50%;
+  width: 200%; 
+  height: 55%;
+  background-image: 
+    linear-gradient(var(--neon-pink) 2px, transparent 2px),
+    linear-gradient(90deg, var(--neon-pink) 2px, transparent 2px);
+  background-size: 40px 40px;
+  transform: perspective(500px) rotateX(65deg);
+  animation: gridMove80 3s linear infinite;
+  z-index: 1;
+  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.terminal-window {
+  background: var(--synth-card);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 0, 127, 0.1);
+  backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: rgba(17, 4, 38, 0.6);
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+}
+
+.mac-btns { display: flex; gap: 8px; }
+.btn-mac { width: 12px; height: 12px; border-radius: 50%; }
+.btn-mac.close { background: var(--neon-pink); }
+.btn-mac.minimize { background: var(--neon-yellow); }
+.btn-mac.expand { background: var(--neon-cyan); }
+
+.terminal-title {
+  margin-left: auto; margin-right: auto;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--neon-cyan);
+  transform: translateX(-20px);
+}
+
+.terminal-body { padding: 2.5rem; }
+
+.command { 
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--neon-cyan); 
+  margin-bottom: 1rem; 
+  font-size: 0.95rem;
+}
+
+.glitch-text { 
+  color: var(--text-main); 
+  font-size: clamp(1.8rem, 4vw, 2.8rem); 
+  margin-bottom: 1.5rem; 
+  text-shadow: 2px 2px 0px rgba(255, 0, 127, 0.4); 
+}
+
+.terminal-output { 
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-muted); 
+  font-size: 1.05rem; 
+  display: inline; 
+  line-height: 1.7; 
+}
+
+.cursor { 
+  color: var(--neon-yellow); 
+  font-size: 1.2rem;
+  animation: blink 1s step-end infinite; 
+}
+
+
+/* --- 04. BOTONES FLUIDOS Y REDONDEADOS --- */
+.btn-neon-amber {
+  background: transparent;
+  color: var(--neon-yellow);
+  border: 1px solid var(--neon-yellow);
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 0.7rem 1.8rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(254, 231, 21, 0.15);
+}
+.btn-neon-amber:hover {
+  background: var(--neon-yellow);
+  color: #09031e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(254, 231, 21, 0.4);
+}
+
+.btn-outline-cyber {
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 0.7rem 1.8rem;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 4px 15px rgba(0, 243, 255, 0.15);
+}
+.btn-outline-cyber:hover {
+  background: var(--neon-cyan);
+  color: #09031e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 243, 255, 0.4);
+}
+
+
+/* --- 05. SECCIONES GENERALES --- */
+.cyber-section {
+  padding: 6rem 0;
+  background-color: var(--synth-bg);
+  border-bottom: 1px solid rgba(255, 0, 127, 0.08);
+}
+
+.cyber-section.alt-bg {
+  background-color: #070217;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+}
+
+.section-header {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 0, 127, 0.2);
+  padding-bottom: 0.75rem;
+}
+
+.command-prefix {
+  color: var(--neon-pink);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+.section-title {
+  color: var(--text-main);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0;
+}
+
+.terminal-text, .terminal-comment {
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+.terminal-comment { color: var(--neon-pink); }
+
+
+/* --- 06. COMPONENTES ORGÁNICOS Y REDONDEADOS --- */
+
+/* Sobre Mí */
+.avatar-cyber {
+  width: 120px; height: 120px;
+  background: rgba(255, 0, 127, 0.08);
+  border: 1px solid var(--neon-pink);
+  border-radius: 50%; /* Completamente orgánico y circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.25);
+  position: relative;
+}
+.avatar-text {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.8rem;
+  color: var(--neon-pink);
+  text-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+  font-weight: 600;
+}
+
+.terminal-block {
+  background: var(--synth-card);
+  padding: 2rem;
+  border-left: none;
+  border-top: 3px solid var(--neon-cyan);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+.terminal-block p { color: var(--text-muted); }
+.terminal-block strong { color: var(--neon-cyan); font-weight: normal; }
+
+/* ==========================================================================
+   ESTILOS DE CARDS PARA EL STACK TECNOLÓGICO
+   ========================================================================== */
+
+.stack-card {
+  background: var(--synth-card);
+  border: 1px solid rgba(211, 189, 242, 0.15);
+  border-radius: 20px;
+  padding: 1.5rem;
+  height: 100%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stack-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(211, 189, 242, 0.1);
+  border-color: var(--neon-cyan);
+}
+
+.stack-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(211, 189, 242, 0.1);
+}
+
+.stack-head h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--text-main);
+}
+
+.stack-head i {
+  font-size: 1.3rem;
+  color: var(--neon-cyan);
+}
+
+.stack-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.tech-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(13, 13, 13, 0.4);
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.tech-item:hover {
+  background: rgba(211, 189, 242, 0.05);
+  border-color: rgba(211, 189, 242, 0.2);
+  transform: translateX(4px);
+}
+
+.tech-icon {
+  font-size: 1.2rem;
+  color: var(--neon-yellow);
+}
+
+.tech-item span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+/* Proyectos (Tarjetas orgánicas con Tilt 3D y bordes suaves) */
+.schema-card {
+  transform-style: preserve-3d;
+  background: var(--synth-card);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 20px; /* Bordes generosamente redondeados */
+  overflow: hidden;
+  height: 100%;
+  transition: transform 0.1s, box-shadow 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  backdrop-filter: blur(10px);
+}
+
+.schema-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 243, 255, 0.15);
+}
+
+.schema-card .schema-head {
+  background: rgba(17, 4, 38, 0.6);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+}
+
+.schema-card .schema-head h3 {
+  color: var(--text-main);
+  font-size: 1.15rem;
+  margin: 0;
+  transform: translateZ(30px);
+}
+
+.schema-card .schema-head a {
+  color: var(--neon-yellow);
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+.schema-card .schema-head a:hover { color: var(--neon-cyan); }
+
+.schema-row {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 0.92rem;
+}
+
+.schema-row dt {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--neon-cyan);
+  min-width: 88px;
+  padding-top: 0.1rem;
+}
+
+.schema-row dd { margin: 0; color: var(--text-muted); }
+
+/* Formación (Timeline con puntos circulares suaves) */
+.cyber-timeline-item {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-bottom: 2.5rem;
+  border-left: 2px dashed rgba(255, 0, 127, 0.3);
+}
+.timeline-dot {
+  position: absolute;
+  left: -6px; top: 3px;
+  width: 12px; height: 12px;
+  background: var(--synth-bg);
+  border: 3px solid var(--neon-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(254, 231, 21, 0.5);
+}
+.timeline-date {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--neon-yellow);
+  margin-bottom: 0.5rem;
+}
+
+/* Contacto y Formulario Fluido */
+.cyber-contact-link {
+  display: flex; align-items: center; gap: 1rem;
+  color: var(--text-main);
+  font-family: 'IBM Plex Mono', monospace;
+  text-decoration: none;
+  margin-bottom: 1.2rem;
+  padding: 1rem 1.2rem;
+  background: var(--synth-card);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+}
+.cyber-contact-link i { color: var(--neon-yellow); font-size: 1.3rem; }
+.cyber-contact-link:hover {
+  border-color: var(--neon-pink);
+  background: rgba(255, 0, 127, 0.08);
+  transform: translateX(6px);
+  color: var(--text-main);
+  box-shadow: 0 8px 20px rgba(255, 0, 127, 0.2);
+}
+
+.cyber-form {
+  background: var(--synth-card);
+  padding: 2.5rem;
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+.cyber-input-group { position: relative; }
+.cyber-input-group input, .cyber-input-group textarea {
+  width: 100%;
+  background: rgba(9, 3, 30, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: var(--text-main);
+  font-family: 'IBM Plex Mono', monospace;
+  padding: 1rem 1.2rem;
+  transition: all 0.3s;
+}
+.cyber-input-group input:focus, .cyber-input-group textarea:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
+  background: rgba(9, 3, 30, 0.8);
+}
+.cyber-input-group label {
+  position: absolute;
+  top: 1rem; left: 1.2rem;
+  color: var(--text-muted);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.cyber-input-group input:focus ~ label,
+.cyber-input-group input:not(:placeholder-shown) ~ label,
+.cyber-input-group textarea:focus ~ label,
+.cyber-input-group textarea:not(:placeholder-shown) ~ label {
+  top: -10px;
+  left: 1rem;
+  font-size: 0.75rem;
+  color: var(--neon-cyan);
+  background: var(--synth-bg);
+  padding: 0 0.4rem;
+  border-radius: 4px;
+}
+
+.cyber-alert {
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  font-family: 'IBM Plex Mono', monospace;
+  border-radius: 12px;
+}
+
+
+/* --- 07. FOOTER --- */
+.cyber-footer {
+  background: #03010c;
+  padding: 2.5rem 0;
+  border-top: 1px solid rgba(255, 0, 127, 0.15);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   BOTÓN DEMO PARA TARJETAS DE PROYECTOS
+   ========================================================================== */
+.btn-demo {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--neon-cyan);
+  color: var(--neon-cyan);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem; /* Letra más pequeña */
+  font-weight: 500;
+  padding: 0.15rem 0.45rem; /* Menos relleno interno */
+  border-radius: 12px; /* Más compacto */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  transform: translateZ(30px);
+}
+
+.btn-demo:hover {
+  background: var(--neon-cyan);
+  color: var(--synth-bg);
+  box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+  transform: translateZ(35px) translateY(-1px);
+}
+
+/* ==========================================================================
+   CORRECCIÓN DE CABECERA Y BOTÓN DEMO EN PROYECTOS
+   ========================================================================== */
+.schema-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.schema-head .d-flex {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transform: translateZ(30px); /* Asegura la profundidad 3D en conjunto */
+}
+
+.schema-head a:not(.btn-demo) {
+  color: var(--neon-cyan);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.schema-head a:not(.btn-demo):hover {
+  color: var(--neon-pink);
+}

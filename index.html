@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sebastián Cruz Méndez — Desarrollador Full-Stack Java</title>
+  <meta name="description" content="Portafolio de Sebastián Cruz Méndez, desarrollador junior Full-Stack Java.">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+
+  <!-- NAV RETRO-TECH -->
+  <nav class="navbar navbar-expand-lg sticky-top cyber-nav">
+    <div class="container">
+      <a class="navbar-brand glitch-hover" href="#inicio">
+        <span class="mono neon-text">> SCM_</span>Sebastian Cruz Méndez
+      </a>
+      <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <i class="bi bi-list"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="#sobre-mi">01. Sobre mí</a></li>
+          <li class="nav-item"><a class="nav-link" href="#habilidades">02. Stack</a></li>
+          <li class="nav-item"><a class="nav-link" href="#proyectos">03. Ejecutar</a></li>
+          <li class="nav-item"><a class="nav-link" href="#formacion">04. Sistema</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">05. Conexión</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO TERMINAL & 3D GRID -->
+  <header class="hero crt-bg" id="inicio">
+    <!-- Capa del grid animado 3D -->
+    <div class="grid-perspective"></div>
+
+    <!-- Contenido principal -->
+    <div class="container position-relative z-index-2">
+      <div class="row align-items-center justify-content-center min-vh-75">
+        <div class="col-lg-9">
+
+          <div class="terminal-window reveal schema-card">
+            <!-- Barra superior de la terminal -->
+            <div class="terminal-header">
+              <div class="mac-btns">
+                <span class="btn-mac close"></span>
+                <span class="btn-mac minimize"></span>
+                <span class="btn-mac expand"></span>
+              </div>
+              <span class="terminal-title">guest@scm-dev: ~/portfolio</span>
+            </div>
+
+            <!-- Cuerpo de la terminal -->
+            <div class="terminal-body">
+              <p class="command">> ./iniciar_perfil.sh</p>
+              <h1 class="glitch-text" data-text="Desarrollador Full-Stack Java.">Desarrollador Full-Stack Java.</h1>
+
+              <!-- El script escribirá aquí -->
+              <p id="typewriter-text" class="terminal-output"></p><span class="cursor">_</span>
+
+              <div class="terminal-actions mt-5 reveal delay-2">
+                <p class="command">> procesando_rutas...</p>
+                <div class="d-flex gap-3 flex-wrap">
+                  <a href="#proyectos" class="btn btn-neon-amber">[ Ejecutar Proyectos ]</a>
+                  <a href="#contacto" class="btn btn-outline-cyber">/ Establecer Conexión</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SOBRE MÍ -->
+  <section id="sobre-mi" class="cyber-section">
+    <div class="container reveal">
+      <div class="section-header">
+        <span class="command-prefix">> </span>
+        <h2 class="section-title glitch-hover">01_Sobre_mí</h2>
+      </div>
+      <div class="row g-4 align-items-center mt-3">
+        <div class="col-auto">
+          <div class="avatar-cyber">
+            <span class="avatar-text">SCM</span>
+          </div>
+        </div>
+        <div class="col">
+          <div class="terminal-block">
+            <p>
+              Soy un desarrollador orientado a analizar, construir y ensamblar sistemas eficientes desde cero. Mi
+              especialidad radica en el desarrollo de aplicaciones web robustas utilizando <strong>Java y Spring
+                Boot</strong> en el backend, conectadas a bases de datos relacionales como <strong>MySQL y
+                PostgreSQL</strong>.
+            </p>
+            <p>
+              Tengo una visión integral del desarrollo, complementando mi lógica backend con interfaces dinámicas
+              construidas en <strong>JavaScript, HTML, CSS y Bootstrap</strong>. Disfruto desarmar problemas complejos
+              para encontrar la solución más óptima, siempre aplicando buenas prácticas y control de versiones continuo.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HABILIDADES / STACK TECNOLÓGICO -->
+  <section id="habilidades" class="cyber-section alt-bg">
+    <div class="container reveal">
+      <div class="section-header">
+        <span class="command-prefix">> </span>
+        <h2 class="section-title">02_Stack_Tecnológico</h2>
+      </div>
+
+      <div class="row g-4 mt-3">
+
+        <!-- Card Backend -->
+        <div class="col-md-6 col-lg-3 reveal">
+          <div class="stack-card">
+            <div class="stack-head">
+              <i class="bi bi-server text-accent"></i>
+              <h4>Backend</h4>
+            </div>
+            <div class="stack-body">
+              <div class="tech-item schema-card">
+                <i class="bi bi-filetype-java tech-icon"></i>
+                <span>Java</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-gear-wide-connected tech-icon"></i>
+                <span>Spring Boot</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-node-plus tech-icon"></i>
+                <span>Node.js</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Bases de Datos -->
+        <div class="col-md-6 col-lg-3 reveal delay-1">
+          <div class="stack-card">
+            <div class="stack-head">
+              <i class="bi bi-database text-accent"></i>
+              <h4>Bases de Datos</h4>
+            </div>
+            <div class="stack-body">
+              <div class="tech-item schema-card">
+                <i class="bi bi-table tech-icon"></i>
+                <span>MySQL</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-server tech-icon"></i>
+                <span>PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Frontend -->
+        <div class="col-md-6 col-lg-3 reveal delay-2">
+          <div class="stack-card">
+            <div class="stack-head">
+              <i class="bi bi-code-slash text-accent"></i>
+              <h4>Frontend</h4>
+            </div>
+            <div class="stack-body">
+              <div class="tech-item schema-card">
+                <i class="bi bi-filetype-js tech-icon"></i>
+                <span>JavaScript</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-filetype-html tech-icon"></i>
+                <span>HTML5 / CSS3</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-bootstrap tech-icon"></i>
+                <span>Bootstrap</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Herramientas -->
+        <div class="col-md-6 col-lg-3 reveal delay-2">
+          <div class="stack-card">
+            <div class="stack-head">
+              <i class="bi bi-tools text-accent"></i>
+              <h4>Herramientas</h4>
+            </div>
+            <div class="stack-body">
+              <div class="tech-item schema-card">
+                <i class="bi bi-git tech-icon"></i>
+                <span>Git</span>
+              </div>
+              <div class="tech-item schema-card">
+                <i class="bi bi-github tech-icon"></i>
+                <span>GitHub</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <section id="proyectos" class="cyber-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="command-prefix">> </span>
+        <h2 class="section-title">03_Ejecutar_Proyectos</h2>
+      </div>
+      <p class="terminal-comment mb-4"># Repositorios y sistemas construidos recientemente</p>
+      <div class="row g-4 justify-content-center">
+        <!-- Reserve One -->
+        <div class="col-md-4 justify-content-center reveal">
+          <div class="schema-card">
+            <div class="schema-head">
+              <h3>Reserve One</h3>
+              <div class="d-flex align-items-center gap-2">
+                <!-- Botón Demo -->
+                <a href="https://tu-enlace-de-demo-reserveone.com" target="_blank" class="btn-demo"
+                  title="Ver Demo en Vivo">
+                  <i class="bi bi-play-fill"></i> Demo
+                </a>
+                <a href="https://github.com/Michaelec19/reserve-one-backend" target="_blank" title="Ver en GitHub"><i
+                    class="bi bi-github"></i></a>
+              </div>
+            </div>
+            <dl class="mb-0">
+              <div class="schema-row">
+                <dt>Descripción</dt>
+                <dd>Plataforma de gestión y reserva de clases para el Club Deportivo LanHua, con catálogo de interfaces
+                  interactivas.</dd>
+              </div>
+              <div class="schema-row">
+                <dt>Stack</dt>
+                <dd>Java · Spring Boot · MySQL</dd>
+              </div>
+              <div class="schema-row">
+                <dt>Rol</dt>
+                <dd>Desarrollo backend y estructuración del sistema y pitch del proyecto.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- TaskFlow API (Gestor de tareas) -->
+        <div class="col-md-4 reveal delay-1">
+          <div class="schema-card">
+            <div class="schema-head">
+              <h3>TaskFlow API</h3>
+              <div class="d-flex align-items-center gap-2">
+                <a href="https://sebastiancruzmendez.github.io/Sebastian_Cruz_Proyecto_Individual/" target="_blank"
+                  class="btn-demo" title="Ver Demo en Vivo">
+                  <i class="bi bi-play-fill"></i> Demo
+                </a>
+                <a href="https://github.com/SebastianCruzMendez/Sebastian_Cruz_Proyecto_Individual" target="_blank"
+                  title="Ver en GitHub"><i class="bi bi-github"></i></a>
+              </div>
+            </div>
+            <dl class="mb-0">
+              <div class="schema-row">
+                <dt>Descripción</dt>
+                <dd>API REST para la gestión de tareas en equipo con niveles de autenticación y seguridad para usuarios.
+                </dd>
+              </div>
+              <div class="schema-row">
+                <dt>Stack</dt>
+                <dd>Java · Spring Boot · PostgreSQL · JWT</dd>
+              </div>
+              <div class="schema-row">
+                <dt>Rol</dt>
+                <dd>Diseño de endpoints, seguridad y pruebas de la API.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- Hackathon 1 -->
+        <div class="col-md-4 reveal delay-2">
+          <div class="schema-card">
+            <div class="schema-head">
+              <h3>Hackathon 1</h3>
+              <div class="d-flex align-items-center gap-2">
+                <a href="https://tu-enlace-de-demo-hackathon.com" target="_blank" class="btn-demo"
+                  title="Ver Demo en Vivo">
+                  <i class="bi bi-play-fill"></i> Demo
+                </a>
+                <a href="https://github.com/tu-usuario/hackathon-1" target="_blank" title="Ver en GitHub"><i
+                    class="bi bi-github"></i></a>
+              </div>
+            </div>
+            <dl class="mb-0">
+              <div class="schema-row">
+                <dt>Descripción</dt>
+                <dd>Primer proyecto colaborativo del programa Junior Full-Stack junto a compañeros, evaluado de manera
+                  destacada[cite: 1].</dd>
+              </div>
+              <div class="schema-row">
+                <dt>Stack</dt>
+                <dd>Java · HTML · CSS · JavaScript</dd>
+              </div>
+              <div class="schema-row">
+                <dt>Rol</dt>
+                <dd>Desarrollo ágil e integración de funcionalidades core en tiempo limitado.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- FORMACIÓN -->
+  <section id="formacion" class="cyber-section alt-bg">
+    <div class="container reveal">
+      <div class="section-header">
+        <span class="command-prefix">> </span>
+        <h2 class="section-title">04_Sistema_Formativo</h2>
+      </div>
+      <div class="row mt-4">
+        <div class="col-lg-8">
+          <div class="cyber-timeline-item">
+            <div class="timeline-dot"></div>
+            <h3 class="h5">Análisis y Desarrollo de Software</h3>
+            <p class="timeline-date">SENA | En curso</p>
+            <p class="mt-2 mb-0 terminal-text">
+              Formación tecnológica profunda en el ciclo de vida del software, desde la recolección de requisitos y
+              análisis estructural hasta la codificación e implementación de soluciones.
+            </p>
+          </div>
+
+          <div class="cyber-timeline-item">
+            <div class="timeline-dot"></div>
+            <h3 class="h5">Junior Full-Stack / Java Developer</h3>
+            <p class="timeline-date">Generation Colombia | 2026</p>
+            <p class="mt-2 mb-0 terminal-text">
+              Bootcamp intensivo enfocado en programación orientada a objetos (Java), arquitectura backend con Spring
+              Boot, bases de datos y desarrollo frontend. Trabajo bajo metodologías ágiles (Scrum) y simulaciones de
+              entornos laborales reales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- CONTACTO -->
+  <section id="contacto" class="cyber-section">
+    <div class="container reveal">
+      <div class="section-header">
+        <span class="command-prefix">> </span>
+        <h2 class="section-title glitch-hover">05_Conexión</h2>
+      </div>
+      <div class="row g-5 mt-2">
+        <div class="col-lg-5">
+          <p class="terminal-text mb-4">
+            [SYS_MSG]: Sistema en línea y escuchando en los siguientes puertos. Si buscas integrar un perfil Full-Stack
+            Java orientado a resultados en tu equipo, inicia el protocolo de contacto.
+          </p>
+          <a href="mailto:sebastian.cruz.dev@example.com" class="cyber-contact-link">
+            <i class="bi bi-envelope"></i> sebastian.cruz.dev@example.com
+          </a>
+          <a href="https://www.linkedin.com/in/sebastian-cruz-m%C3%A9ndez-developer/" class="cyber-contact-link">
+            <i class="bi bi-linkedin"></i> linkedin.com/in/sebastian-cruz-dev
+          </a>
+          <a href="https://github.com/SebastianCruzMendez" class="cyber-contact-link">
+            <i class="bi bi-github"></i> github.com/sebastiancruzdev
+          </a>
+        </div>
+        <div class="col-lg-7">
+          <form class="cyber-form" id="contactForm" novalidate>
+            <div class="cyber-input-group mb-4">
+              <input type="text" id="nombre" required placeholder=" ">
+              <label for="nombre">Nombre_Usuario</label>
+              <div class="invalid-feedback">Error: Ingrese un nombre válido.</div>
+            </div>
+            <div class="cyber-input-group mb-4">
+              <input type="email" id="email" required placeholder=" ">
+              <label for="email">Dirección_Email</label>
+              <div class="invalid-feedback">Error: Protocolo de email inválido.</div>
+            </div>
+            <div class="cyber-input-group mb-4">
+              <textarea id="mensaje" rows="4" required placeholder=" "></textarea>
+              <label for="mensaje">Carga_Útil (Mensaje)</label>
+              <div class="invalid-feedback">Error: El mensaje no puede estar vacío.</div>
+            </div>
+            <button type="submit" class="btn btn-neon-amber w-100">Transmitir Datos</button>
+            <div id="formSuccess" class="alert cyber-alert mt-4 d-none" role="alert">
+              > STATUS 200: Paquete enviado exitosamente. Conexión cerrada.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="cyber-footer">
+    <div class="container d-flex justify-content-between flex-wrap gap-3">
+      <span>> SCM_SYSTEM_RUNTIME © <span id="year"></span></span>
+      <span class="terminal-comment"># Built_with: JS, CSS_Grid & Terminal_Vibes</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="./css/script.js"></script>
+</body>
+
+</html>
+
+</html>
