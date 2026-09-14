@@ -9,7 +9,7 @@ Portafolio profesional desarrollado con una estética retro-tech/synthwave, enfo
 * **Bootstrap Icons** (Iconografía técnica)
 
 ## Deploy
-Enlace en vivo: [Próximamente / Inserta tu link de despliegue aquí]
+Enlace en vivo: https://sebastiancruzmendez.github.io/Portafolio_Sebastian_Cruz/
 
 
 ##  Estructura del Proyecto
