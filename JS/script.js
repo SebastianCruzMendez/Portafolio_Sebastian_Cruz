@@ -1,8 +1,3 @@
-/**
- * Portafolio SCM - Interacciones Principales
- * Desarrollado con JavaScript Vanilla (ES6+)
- */
-
 document.addEventListener('DOMContentLoaded', () => {
   
   // =========================================================
@@ -19,13 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (i < textToType.length) {
         typeWriterElement.innerHTML += textToType.charAt(i);
         i++;
-        // Variación aleatoria de velocidad para simular un tipeo humano real
         const randomSpeed = Math.random() * (45 - 20) + 20;
         setTimeout(typeWriter, randomSpeed);
       }
     };
     
-    // Inicia el efecto 1 segundo después de cargar la página
     setTimeout(typeWriter, 1000);
   };
 
@@ -39,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
-          // Dejamos de observar para que la animación solo ocurra una vez
           observer.unobserve(entry.target); 
         }
       });
@@ -58,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const cards = document.querySelectorAll('.schema-card');
   
     cards.forEach(card => {
-      // Movimiento 3D siguiendo el cursor
       card.addEventListener('mousemove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left; 
@@ -67,20 +58,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        // Ecuación para calcular los grados de inclinación (max 8 grados)
         const rotateX = ((y - centerY) / centerY) * -8; 
         const rotateY = ((x - centerX) / centerX) * 8;
         
         card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
       });
   
-      // Restaurar la posición original suavemente al salir
       card.addEventListener('mouseleave', () => {
         card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
         card.style.transition = 'transform 0.5s ease';
       });
       
-      // Quitar la transición al entrar para que el seguimiento sea instantáneo
       card.addEventListener('mouseenter', () => {
         card.style.transition = 'none';
       });
@@ -106,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { 
-      // Ajuste de margen para detectar la sección activa hacia la mitad de la pantalla
       rootMargin: '-40% 0px -60% 0px' 
     });
     
@@ -117,24 +104,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. UTILIDADES (Menú Móvil, Año del Footer, Validaciones)
   // =========================================================
   const initUtils = () => {
-    // Año dinámico
     const yearElement = document.getElementById('year');
     if(yearElement) {
       yearElement.textContent = new Date().getFullYear();
     }
   
-    // Autocierre del menú en móviles al hacer clic en un enlace
     document.querySelectorAll('#navMenu .nav-link').forEach(link => {
       link.addEventListener('click', () => {
         const menu = document.getElementById('navMenu');
         if (menu.classList.contains('show')) {
-          // Utiliza la API de Bootstrap para cerrar el collapse
           bootstrap.Collapse.getOrCreateInstance(menu).hide();
         }
       });
     });
   
-    // Validación del formulario de contacto
     const form = document.getElementById('contactForm');
     if(form) {
       form.addEventListener('submit', function (e) {
@@ -156,6 +139,30 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   };
+  const initKeyboardScroll = () => {
+    const contactSection = document.getElementById('contacto');
+    const keys = document.querySelectorAll('.rm-key');
+
+    if (!contactSection || keys.length === 0) return;
+
+    window.addEventListener('scroll', () => {
+      const rect = contactSection.getBoundingClientRect();
+      
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        
+        const scrollDepth = window.innerHeight - rect.top;
+
+        keys.forEach((key, index) => {
+          const speed = 0.005; 
+          const offset = index * 0.8; 
+          
+          const wave = Math.sin((scrollDepth * speed) + offset) * 8; 
+
+          key.style.setProperty('--scroll-offset', `${wave}px`);
+        });
+      }
+    });
+  };
 
   // =========================================================
   // EJECUCIÓN DE TODOS LOS MÓDULOS
@@ -165,5 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initTiltEffect();
   initNavHighlight();
   initUtils();
+  initKeyboardScroll();
   
 });

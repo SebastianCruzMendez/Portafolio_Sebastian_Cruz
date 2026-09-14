@@ -1,25 +1,19 @@
-/* ==========================================================================
-   PORTAFOLIO SCM - ESTÉTICA FLUIDA & MODERN VINTAGE
-   ========================================================================== */
-
 /* --- 00. VARIABLES GLOBALES Y RESET --- */
 :root {
-  /* Fondo profundo basado en el negro #0D0D0D con máxima elegancia y contraste */
-  --synth-bg: #0d0d0d;          
-  --synth-card: rgba(140, 128, 166, 0.08); /* Tarjeta translúcida con el matiz de #8C80A6 */
+  --bg-deep: #1a1a2e;
+  --bg-soft: #242442;
+  --sunset-pink: #ff7eb3;
+  --sunset-peach: #ff758c;
+  --sunset-orange: #ff9a44;
+  --ocean-blue: #2575fc;
+  --ocean-cyan: #4facfe;
   
-  /* Integración exacta de tu nueva paleta mapeada para alto impacto y diferenciación */
-  --neon-pink: #8C031C;         /* Rojo vino profundo para acentos principales, bordes y alertas */
-  --neon-cyan: #D3BDF2;         /* Lavanda pastel brillante para títulos, códigos y elementos clave */
-  --neon-yellow: #BCF2A2;       /* Verde lima pastel para llamadas a la acción, botones y estados activos */
-  
-  /* Colores de soporte directo de tu paleta */
-  --color-purple: #8C80A6;      /* Púrpura apagado para etiquetas y elementos secundarios */
-
-  --text-main: #f3eeff;         /* Blanco con sutil matiz lavanda para lectura nítida */
-  --text-muted: #8c80a6;        /* Tono secundario de soporte para descripciones */
-  --line-synth: rgba(211, 189, 242, 0.18);
+  --text-main: #f8f9fa;
+  --text-muted: #b8b8d1;
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.15);
 }
+
 html {
   scroll-behavior: smooth;
   box-sizing: border-box;
@@ -30,591 +24,1000 @@ html {
 }
 
 body {
-  background-color: var(--synth-bg);
+  background-color: var(--bg-deep);
   color: var(--text-main);
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: 'Nunito', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'IBM Plex Mono', monospace;
-  font-weight: 600;
+.city-title {
+  font-family: 'Righteous', cursive;
+  letter-spacing: 1px;
 }
-
-
-/* --- 01. UTILIDADES Y ANIMACIONES FLUIDAS --- */
+.text-sunset { color: var(--sunset-pink); }
+.text-ocean { color: var(--ocean-cyan); }
 .z-index-2 { z-index: 2; }
 
+
+/* --- 01. ANIMACIONES Y UTILIDADES --- */
 .reveal {
   opacity: 0;
-  transform: translateY(25px);
+  transform: translateY(30px);
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
 }
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
 
-.delay-1 { transition-delay: 0.15s; }
-.delay-2 { transition-delay: 0.3s; }
+@keyframes waveMove {
+  0% { transform: perspective(600px) rotateX(70deg) translateY(0); }
+  100% { transform: perspective(600px) rotateX(70deg) translateY(50px); }
+}
 
-@keyframes blink { 50% { opacity: 0; } }
+@keyframes spin { 
+  100% { transform: rotate(360deg); } 
+}
 
-@keyframes gridMove80 {
-  0% { transform: perspective(500px) rotateX(65deg) translateY(0); }
-  100% { transform: perspective(500px) rotateX(65deg) translateY(40px); }
+@keyframes glare {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+@keyframes blink { 
+  50% { opacity: 0; } 
 }
 
 
-/* --- 02. NAVEGACIÓN FLUIDA --- */
-.cyber-nav {
-  background: rgba(9, 3, 30, 0.8);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 0, 127, 0.15);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.navbar-brand {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--text-main) !important;
-  font-size: 1.1rem;
-}
-
-.navbar-brand .neon-text {
-  color: var(--neon-cyan);
-  text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
-  margin-right: 5px;
-}
-
-.nav-link {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--text-muted) !important;
-  font-size: 0.9rem;
-  margin: 0 0.5rem;
-  transition: all 0.3s ease;
-  border-radius: 20px;
-  padding: 0.4rem 0.8rem;
-}
-
-.nav-link:hover, .nav-link.active {
-  color: var(--neon-yellow) !important;
-  background: rgba(254, 231, 21, 0.08);
-  text-shadow: 0 0 8px rgba(254, 231, 21, 0.4);
-}
-
-.custom-toggler i {
-  color: var(--neon-pink);
-  font-size: 1.5rem;
-}
-
-
-/* --- 03. HERO Y CONTENEDOR FLUIDO --- */
-.hero {
-  position: relative;
-  min-height: calc(100vh - 70px); /* Resta exactamente la altura de la barra de navegación */
-  padding: 2rem 0; /* Reduce drásticamente el espacio superior */
-  display: flex;
-  align-items: center;
-  background: radial-gradient(circle at top center, #13131a 0%, var(--cyber-bg) 100%);
-  overflow: hidden;
-}
-
-.min-vh-75 {
-  min-height: auto; 
-}
-
-.grid-perspective {
-  position: absolute;
-  bottom: -10%; 
-  left: -50%;
-  width: 200%; 
-  height: 55%;
-  background-image: 
-    linear-gradient(var(--neon-pink) 2px, transparent 2px),
-    linear-gradient(90deg, var(--neon-pink) 2px, transparent 2px);
-  background-size: 40px 40px;
-  transform: perspective(500px) rotateX(65deg);
-  animation: gridMove80 3s linear infinite;
-  z-index: 1;
-  mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
-}
-
-.terminal-window {
-  background: var(--synth-card);
-  border: 1px solid rgba(0, 243, 255, 0.25);
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 0, 127, 0.1);
+/* --- 02. NAVEGACIÓN --- */
+.city-nav {
+  background: rgba(26, 26, 46, 0.85);
   backdrop-filter: blur(12px);
-  overflow: hidden;
+  border-bottom: 2px solid var(--sunset-pink);
+}
+.navbar-brand { font-size: 1.5rem; color: #fff !important; }
+.nav-link {
+  color: var(--text-main) !important;
+  font-weight: 600;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+.nav-link:hover { color: var(--sunset-orange) !important; }
+.custom-toggler i { color: var(--sunset-pink); font-size: 1.5rem; }
+
+
+/* --- 03. BOTONES GLOBALES --- */
+.btn-sunset {
+  background: linear-gradient(45deg, var(--sunset-pink), var(--sunset-orange));
+  color: #fff;
+  border: none;
+  font-family: 'Righteous', cursive;
+  padding: 0.6rem 1.8rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(255, 126, 179, 0.4);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-sunset:hover {
+  color: #fff; 
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 20px rgba(255, 126, 179, 0.6); 
 }
 
-.terminal-header {
-  background: rgba(17, 4, 38, 0.6);
-  padding: 1rem 1.25rem;
+.btn-outline-ocean {
+  background: transparent;
+  color: var(--ocean-cyan);
+  border: 2px solid var(--ocean-cyan);
+  font-family: 'Righteous', cursive;
+  padding: 0.6rem 1.8rem;
+  border-radius: 30px;
+  transition: all 0.3s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-outline-ocean:hover {
+  background: var(--ocean-cyan); 
+  color: #fff; 
+  transform: translateY(-3px); 
+  box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+}
+
+.btn-cv-download {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(79, 172, 254, 0.1);
+  border: 1px solid var(--ocean-cyan);
+  color: var(--ocean-cyan);
+  padding: 0.5rem 1.5rem;
+  border-radius: 30px;
+  font-family: 'Righteous', cursive;
+  font-size: 0.95rem;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-cv-download:hover {
+  background: var(--ocean-cyan);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(79, 172, 254, 0.5);
+  transform: translateY(-3px);
+}
+
+/* --- 04. HERO & MUSIC PLAYER UI --- */
+.city-sunset-bg {
+  position: relative;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 243, 255, 0.15);
+  background: linear-gradient(to bottom, #1a1a2e 0%, #3e1e68 50%, #ff7eb3 100%);
+  overflow: hidden;
+  padding: 5rem 0;
 }
 
-.mac-btns { display: flex; gap: 8px; }
-.btn-mac { width: 12px; height: 12px; border-radius: 50%; }
-.btn-mac.close { background: var(--neon-pink); }
-.btn-mac.minimize { background: var(--neon-yellow); }
-.btn-mac.expand { background: var(--neon-cyan); }
-
-.terminal-title {
-  margin-left: auto; margin-right: auto;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--neon-cyan);
-  transform: translateX(-20px);
+.ocean-grid {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background-image: 
+    linear-gradient(rgba(79, 172, 254, 0.3) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(79, 172, 254, 0.3) 2px, transparent 2px);
+  background-size: 50px 50px;
+  transform: perspective(600px) rotateX(70deg);
+  animation: waveMove 4s linear infinite;
+  z-index: 1;
 }
 
-.terminal-body { padding: 2.5rem; }
-
-.command { 
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--neon-cyan); 
-  margin-bottom: 1rem; 
-  font-size: 0.95rem;
+.music-player-ui {
+  background: rgba(26, 26, 46, 0.65);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  position: relative;
 }
 
-.glitch-text { 
-  color: var(--text-main); 
-  font-size: clamp(1.8rem, 4vw, 2.8rem); 
-  margin-bottom: 1.5rem; 
-  text-shadow: 2px 2px 0px rgba(255, 0, 127, 0.4); 
+.player-left {
+  background: rgba(0, 0, 0, 0.2);
+  border-right: 1px solid var(--glass-border);
 }
 
-.terminal-output { 
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--text-muted); 
-  font-size: 1.05rem; 
-  display: inline; 
-  line-height: 1.7; 
+/* Arte del Álbum y Vinilo (Hero) */
+.album-art-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+}
+.album-cover {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, var(--sunset-orange), var(--sunset-pink));
+  border-radius: 12px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 2; overflow: hidden;
+}
+/* Imagen de portada del álbum */
+.album-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  position: relative;
+  z-index: 1; 
 }
 
-.cursor { 
-  color: var(--neon-yellow); 
-  font-size: 1.2rem;
-  animation: blink 1s step-end infinite; 
+.album-glare {
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  animation: glare 6s infinite;
+  z-index: 2; 
+}
+.vinyl-record-lg {
+  position: absolute;
+  top: 5px; right: -40px; 
+  width: 240px; height: 240px;
+  background: #111; border-radius: 50%; border: 2px solid #222;
+  display: flex; justify-content: center; align-items: center;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
+  animation: spin 4s linear infinite;
+  background-image: radial-gradient(circle, transparent 40%, #222 45%, transparent 50%), radial-gradient(circle, transparent 60%, #222 65%, transparent 70%);
+  z-index: 1;
+}
+.vinyl-label-lg {
+  width: 80px; height: 80px;
+  background: var(--ocean-cyan); border-radius: 50%; border: 4px solid #000;
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'Righteous', cursive; color: #fff;
 }
 
+/* Lado Derecho (Reproductor LCD) */
+.badge-stereo {
+  background: rgba(255, 126, 179, 0.2); color: var(--sunset-pink);
+  padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold;
+  letter-spacing: 1px; border: 1px solid var(--sunset-pink);
+}
+.frequency-text { font-family: 'Righteous', cursive; color: var(--text-muted); font-size: 0.9rem; }
+.track-title { font-size: clamp(1.8rem, 3vw, 2.5rem); margin-bottom: 0.2rem; color: #fff; }
+.track-artist { font-size: 1.1rem; color: var(--ocean-cyan); font-weight: 600; }
 
-/* --- 04. BOTONES FLUIDOS Y REDONDEADOS --- */
-.btn-neon-amber {
-  background: transparent;
-  color: var(--neon-yellow);
-  border: 1px solid var(--neon-yellow);
-  font-family: 'IBM Plex Mono', monospace;
-  padding: 0.7rem 1.8rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-  box-shadow: 0 4px 15px rgba(254, 231, 21, 0.15);
+.lcd-display {
+  background: #0a0a14; border: 2px inset rgba(255, 255, 255, 0.1); border-radius: 8px;
+  padding: 12px 15px; box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
 }
-.btn-neon-amber:hover {
-  background: var(--neon-yellow);
-  color: #09031e;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(254, 231, 21, 0.4);
+.lcd-content {
+  font-family: 'IBM Plex Mono', monospace; color: var(--sunset-orange);
+  font-size: 0.9rem; text-shadow: 0 0 5px rgba(255, 154, 68, 0.5);
+}
+.cursor { animation: blink 1s step-end infinite; }
+
+.time-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; color: var(--text-muted); }
+.player-progress-bg { height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; position: relative; }
+.player-progress-fill { height: 100%; width: 35%; background: linear-gradient(90deg, var(--ocean-cyan), var(--sunset-pink)); border-radius: 3px; position: relative; }
+.progress-knob {
+  width: 14px; height: 14px; background: #fff; border-radius: 50%;
+  position: absolute; right: -7px; top: -4px; box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-.btn-outline-cyber {
-  background: transparent;
-  color: var(--neon-cyan);
-  border: 1px solid var(--neon-cyan);
-  font-family: 'IBM Plex Mono', monospace;
-  padding: 0.7rem 1.8rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 30px;
-  text-decoration: none;
-  display: inline-block;
-  box-shadow: 0 4px 15px rgba(0, 243, 255, 0.15);
+.playback-controls { display: flex; justify-content: center; align-items: center; gap: 1.5rem; }
+.control-btn {
+  background: transparent; border: none; color: var(--text-muted); font-size: 1.2rem; transition: all 0.2s ease; padding: 0;
 }
-.btn-outline-cyber:hover {
-  background: var(--neon-cyan);
-  color: #09031e;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 243, 255, 0.4);
+.control-btn:hover { color: var(--sunset-pink); transform: scale(1.1); }
+.play-btn {
+  width: 50px; height: 50px; border-radius: 50%; background: var(--ocean-cyan); color: #fff;
+  display: flex; justify-content: center; align-items: center; font-size: 1.8rem;
+  box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4); text-decoration: none;
+}
+.play-btn:hover {
+  background: var(--sunset-pink); color: #fff; transform: scale(1.05); box-shadow: 0 6px 20px rgba(255, 126, 179, 0.5);
 }
 
 
 /* --- 05. SECCIONES GENERALES --- */
-.cyber-section {
-  padding: 6rem 0;
-  background-color: var(--synth-bg);
-  border-bottom: 1px solid rgba(255, 0, 127, 0.08);
+.city-section { padding: 6rem 0; }
+.city-section.alt-bg { background-color: var(--bg-soft); }
+.section-header { margin-bottom: 3rem; }
+
+/* Efecto Tilt Global 3D */
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
 }
 
-.cyber-section.alt-bg {
-  background-color: #070217;
-  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.3);
+/* --- 06. COMPONENTES ESPECÍFICOS --- */
+
+/* Vinilo Animado (Sobre mí) */
+.vinyl-record {
+  width: 150px; height: 150px; background: #111; border-radius: 50%; border: 4px solid #333;
+  display: flex; justify-content: center; align-items: center; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  animation: spin 4s linear infinite;
+  background-image: radial-gradient(circle, transparent 40%, #222 45%, transparent 50%), radial-gradient(circle, transparent 60%, #222 65%, transparent 70%);
+}
+.vinyl-center {
+  width: 50px; height: 50px; background: var(--sunset-pink); border-radius: 50%;
+  display: flex; justify-content: center; align-items: center; font-family: 'Righteous', cursive; color: #fff; font-size: 0.8rem; border: 4px solid #000;
 }
 
-.section-header {
+.glass-block {
+  background: var(--glass-bg); padding: 2rem; border-radius: 15px; border: 1px solid var(--glass-border);
+}
+
+/* Tarjetas Casete (Habilidades) */
+/* ==========================================================================
+   CASETES REALISTAS (SECCIÓN STACK)
+   ========================================================================== */
+
+.cassette-card {
+  background: linear-gradient(180deg, #e0e0e0 0%, #d4d4d4 100%);
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 
+    inset 0 2px 4px rgba(255,255,255,0.8),
+    inset 0 -4px 6px rgba(0,0,0,0.1),
+    0 15px 30px rgba(0,0,0,0.5);
+  position: relative;
+  height: 100%;
+  border: 1px solid #b3b3b3;
   display: flex;
-  align-items: baseline;
-  margin-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255, 0, 127, 0.2);
-  padding-bottom: 0.75rem;
+  flex-direction: column;
 }
 
-.command-prefix {
-  color: var(--neon-pink);
+/* Tornillos del casete */
+.cassette-screw {
+  width: 8px; height: 8px; background: #999;
+  border-radius: 50%; position: absolute;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.6), inset -1px -1px 2px rgba(255,255,255,0.6);
+}
+.cassette-screw::after {
+  content: ''; position: absolute; top: 3px; left: 1px; width: 6px; height: 2px;
+  background: rgba(0,0,0,0.4); transform: rotate(45deg);
+}
+.screw-tl { top: 8px; left: 8px; }
+.screw-tr { top: 8px; right: 8px; }
+.screw-bl { bottom: 8px; left: 8px; }
+.screw-br { bottom: 8px; right: 8px; }
+
+/* Etiqueta (Sticker) Principal */
+.cassette-sticker {
+  background: #fdfdfd;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(0,0,0,0.03) 20px);
+  border-radius: 6px;
+  margin: 10px 15px 0 15px;
+  padding: 15px 10px 12px 10px;
+  border: 1px solid #ccc;
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+}
+
+/* Franja de color superior de la etiqueta */
+.cassette-sticker::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: var(--sunset-orange); border-radius: 5px 5px 0 0;
+}
+.sticker-blue::before { background: var(--ocean-cyan); }
+.sticker-pink::before { background: var(--sunset-pink); }
+
+.cassette-title {
+  font-family: 'Righteous', cursive;
+  color: var(--bg-deep);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  width: 90%;
+  text-align: center;
+}
+
+/* Ventana transparente de las cintas */
+.cassette-window {
+  width: 160px; height: 50px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  border: 2px inset #999;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.9);
+  position: relative;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 20px; margin-bottom: 15px; overflow: hidden;
+}
+/* Reflejo/cinta oscura en la base de la ventana */
+.cassette-window::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 12px;
+  background: rgba(0,0,0,0.8);
+}
+
+/* Bobinas (Reels) giratorias */
+.reel {
+  width: 38px; height: 38px;
+  background: #dedede;
+  border-radius: 50%;
+  position: relative;
+  display: flex; justify-content: center; align-items: center;
+  box-shadow: 0 0 0 5px #333;
+  animation: spin 4s linear infinite;
+}
+.reel::after {
+  content: ''; width: 14px; height: 14px; background: #111; border-radius: 50%; z-index: 2;
+}
+.reel-spokes {
+  position: absolute; width: 100%; height: 3px; background: #888;
+}
+.reel-spokes::before {
+  content: ''; position: absolute; width: 100%; height: 100%; background: #888; transform: rotate(60deg);
+}
+.reel-spokes::after {
+  content: ''; position: absolute; width: 100%; height: 100%; background: #888; transform: rotate(120deg);
+}
+
+.cassette-tags {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; z-index: 2;
+}
+.city-tag {
+  background: var(--bg-deep); color: #fff; font-family: 'Nunito', sans-serif;
+  font-size: 0.75rem; padding: 3px 10px; border-radius: 4px; font-weight: 700;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Base inferior del casete (donde lee el cabezal) */
+.cassette-bottom {
+  height: 40px; margin: 0 30px;
+  background: linear-gradient(180deg, #d4d4d4 0%, #a8a8a8 100%);
+  border-radius: 5px 5px 15px 15px;
+  border: 1px solid #999; border-top: none;
+  position: relative; box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+}
+.cassette-bottom::before, .cassette-bottom::after {
+  content: ''; position: absolute; top: 10px; width: 12px; height: 12px;
+  background: #111; border-radius: 50%; box-shadow: inset 1px 1px 3px rgba(0,0,0,0.8);
+}
+.cassette-bottom::before { left: 15px; }
+.cassette-bottom::after { right: 15px; }
+
+/* ==========================================================================
+   TARJETAS DE PROYECTOS (ESTILO GAME BOY CLÁSICO)
+   ========================================================================== */
+
+.gameboy-card {
+  background: #d3d5d7; /* Gris clásico */
+  border-radius: 10px 10px 50px 10px; /* La clásica curva inferior derecha */
+  padding: 20px;
+  box-shadow: 
+    inset -5px -5px 15px rgba(0,0,0,0.1),
+    inset 5px 5px 15px rgba(255,255,255,0.7),
+    0 15px 35px rgba(0,0,0,0.5);
+  border: 1px solid #b8b8b8;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Marco de la pantalla */
+.gb-bezel {
+  background: #545454;
+  border-radius: 10px 10px 35px 10px;
+  padding: 15px 25px 25px 25px;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  margin-bottom: 15px;
+}
+
+/* Indicador de Batería */
+.gb-battery {
+  position: absolute;
+  top: 35%; left: 8px;
+  display: flex; flex-direction: column; align-items: center;
+}
+.gb-battery .led {
+  width: 8px; height: 8px;
+  background: #ff0000;
+  border-radius: 50%;
+  box-shadow: 0 0 5px #ff0000, inset 1px 1px 2px rgba(255,255,255,0.5);
+}
+.gb-battery span {
+  color: #a0a0a0; font-size: 0.45rem; margin-top: 3px; font-family: sans-serif;
+}
+
+/* Pantalla LCD Verde */
+.gb-screen {
+  background: #8bac0f;
+  border: 3px inset #6b8c00;
+  border-radius: 3px;
+  padding: 15px;
+  height: 160px;
+  box-shadow: inset 3px 3px 10px rgba(0,0,0,0.3);
+  display: flex; flex-direction: column;
+  color: #0f380f; /* Verde muy oscuro (píxeles encendidos) */
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 1.5rem;
-  margin-right: 10px;
+  overflow: hidden;
 }
 
-.section-title {
-  color: var(--text-main);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin: 0;
+.gb-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-bottom: 2px solid #0f380f;
+  padding-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-.terminal-text, .terminal-comment {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--text-muted);
-  font-size: 0.95rem;
+.gb-desc {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  flex-grow: 1;
 }
-.terminal-comment { color: var(--neon-pink); }
 
+.gb-stack {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-top: auto;
+}
 
-/* --- 06. COMPONENTES ORGÁNICOS Y REDONDEADOS --- */
+/* Marca */
+.gb-brand {
+  font-family: 'Righteous', cursive;
+  color: #1b1bb3;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+.gb-brand .tm { font-size: 0.5rem; vertical-align: top; }
 
-/* Sobre Mí */
-.avatar-cyber {
-  width: 120px; height: 120px;
-  background: rgba(255, 0, 127, 0.08);
-  border: 1px solid var(--neon-pink);
-  border-radius: 50%; /* Completamente orgánico y circular */
+/* Área de controles */
+.gb-controls-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+/* Cruceta (D-Pad) */
+.gb-dpad {
+  position: relative;
+  width: 60px; height: 60px;
+}
+.dpad-vertical {
+  position: absolute; top: 0; left: 20px;
+  width: 20px; height: 60px; background: #222;
+  border-radius: 2px; box-shadow: -2px -2px 3px rgba(255,255,255,0.2) inset;
+}
+.dpad-horizontal {
+  position: absolute; top: 20px; left: 0;
+  width: 60px; height: 20px; background: #222;
+  border-radius: 2px; box-shadow: -2px -2px 3px rgba(255,255,255,0.2) inset;
+}
+.dpad-center {
+  position: absolute; top: 3px; left: 23px;
+  width: 14px; height: 14px; background: #1a1a1a;
+  border-radius: 50%; box-shadow: inset 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Botones A y B */
+.gb-action-buttons {
+  display: flex; gap: 10px;
+  transform: rotate(-20deg); /* La inclinación clásica */
+}
+.gb-btn-group {
+  display: flex; flex-direction: column; align-items: center;
+}
+.gb-btn {
+  width: 35px; height: 35px;
+  background: #900020; /* Rojo carmesí del original */
+  border-radius: 50%;
+  color: #fff; display: flex; justify-content: center; align-items: center;
+  text-decoration: none; font-size: 1.2rem;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.4), inset -2px -2px 5px rgba(0,0,0,0.4);
+  transition: transform 0.1s;
+}
+.gb-btn:hover { background: #b00028; color: #fff; }
+.gb-btn:active { transform: scale(0.95); box-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+.gb-btn-group span {
+  font-family: sans-serif; font-size: 0.6rem; font-weight: bold;
+  color: #1b1bb3; margin-top: 5px;
+}
+
+/* Área inferior (Start/Select y Altavoz) */
+.gb-bottom-area {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: auto; padding: 0 10px;
+}
+
+.gb-sys-buttons {
+  display: flex; gap: 15px; margin-bottom: 10px;
+}
+.sys-group {
+  display: flex; flex-direction: column; align-items: center;
+}
+.sys-btn {
+  width: 35px; height: 10px;
+  background: #777; border-radius: 10px;
+  transform: rotate(-20deg);
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.4), inset -1px -1px 2px rgba(0,0,0,0.5);
+}
+.sys-group span {
+  font-family: sans-serif; font-size: 0.5rem; font-weight: bold;
+  color: #1b1bb3; margin-top: 8px; transform: rotate(-20deg);
+}
+
+/* Rejilla del altavoz */
+.gb-speaker {
+  display: flex; gap: 4px; transform: rotate(-25deg);
+}
+.gb-speaker span {
+  display: block; width: 6px; height: 50px;
+  background: #b5b5b5; border-radius: 5px;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.3);
+}
+/* ==========================================================================
+   TARJETAS DE FORMACIÓN (ESTILO LOMOS DE VHS APILADOS)
+   ========================================================================== */
+
+.vhs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Espacio entre las cintas apiladas */
+}
+
+/* El cascarón de plástico negro del lomo */
+.vhs-spine-card {
+  background: #181818;
+  border-radius: 4px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #111;
+  box-shadow: 
+    inset 0 2px 3px rgba(255,255,255,0.15), /* Reflejo de luz arriba */
+    inset 0 -3px 5px rgba(0,0,0,0.8),       /* Sombra profunda abajo */
+    0 10px 15px rgba(0,0,0,0.4);            /* Sombra proyectada en la pila */
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+}
+
+/* Efecto increíble: Saca la cinta de la pila al pasar el mouse */
+.vhs-spine-card:hover {
+  transform: translateX(30px);
+}
+
+/* La muesca lateral izquierda del plástico (típica de los VHS) */
+.spine-grip {
+  width: 25px;
+  height: 45px;
+  background: #0a0a0a;
+  border-radius: 3px;
+  margin-right: 20px;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8), inset -1px -1px 2px rgba(255,255,255,0.05);
+}
+
+/* Pequeña muesca derecha */
+.spine-grip-right {
+  width: 8px;
+  height: 45px;
+  background: #0a0a0a;
+  border-radius: 2px;
+  margin-left: 15px;
+  box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8);
+}
+
+/* El Sticker principal */
+.spine-label {
+  flex-grow: 1;
+  height: 100%;
+  min-height: 120px;
+  background: #f4f4f0; /* Color papel viejo */
+  border-radius: 3px;
+  display: flex;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Bloques de color en los extremos de la etiqueta */
+.label-side {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 25px rgba(255, 0, 127, 0.25);
-  position: relative;
-}
-.avatar-text {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 1.8rem;
-  color: var(--neon-pink);
-  text-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
-  font-weight: 600;
+  padding: 0 10px;
+  font-family: 'Righteous', cursive;
+  letter-spacing: 2px;
 }
 
-.terminal-block {
-  background: var(--synth-card);
-  padding: 2rem;
-  border-left: none;
-  border-top: 3px solid var(--neon-cyan);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-}
-.terminal-block p { color: var(--text-muted); }
-.terminal-block strong { color: var(--neon-cyan); font-weight: normal; }
-
-/* ==========================================================================
-   ESTILOS DE CARDS PARA EL STACK TECNOLÓGICO
-   ========================================================================== */
-
-.stack-card {
-  background: var(--synth-card);
-  border: 1px solid rgba(211, 189, 242, 0.15);
-  border-radius: 20px;
-  padding: 1.5rem;
-  height: 100%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Texto vertical para los extremos */
+.label-side span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-orientation: mixed;
 }
 
-.stack-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(211, 189, 242, 0.1);
-  border-color: var(--neon-cyan);
-}
-
-.stack-head {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid rgba(211, 189, 242, 0.1);
-}
-
-.stack-head h4 {
-  font-family: 'IBM Plex Mono', monospace;
+.left-side {
+  width: 50px;
   font-size: 1.1rem;
-  margin: 0;
-  color: var(--text-main);
+  font-weight: bold;
 }
 
-.stack-head i {
-  font-size: 1.3rem;
-  color: var(--neon-cyan);
+.right-side {
+  width: 45px;
+  font-size: 0.9rem;
 }
 
-.stack-body {
+/* Temas de color para las cintas (Basado en la imagen de referencia) */
+.theme-ocean .left-side { background: #eab543; color: #111; } /* Amarillo retro estilo Kotac */
+.theme-ocean .right-side { background: #222; color: #fff; }
+
+.theme-sunset .left-side { background: #b33939; color: #fff; } /* Rojo clásico estilo TVA */
+.theme-sunset .right-side { background: #222; color: #fff; }
+
+/* Centro de la etiqueta (Zona de escritura) */
+.label-main {
+  flex-grow: 1;
+  position: relative;
+  padding: 12px 25px;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  justify-content: center;
+  border-left: 2px solid rgba(0,0,0,0.1);
+  border-right: 2px solid rgba(0,0,0,0.1);
 }
 
-.tech-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  background: rgba(13, 13, 13, 0.4);
-  padding: 0.6rem 1rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: all 0.2s ease;
+/* Marco interno y líneas del cuaderno en la etiqueta */
+.label-main::after {
+  content: ''; position: absolute; top: 6px; bottom: 6px; left: 8px; right: 8px;
+  border: 1px solid rgba(0,0,0,0.2); border-radius: 2px; pointer-events: none;
+}
+.label-main::before {
+  content: ''; position: absolute; top: 12px; bottom: 12px; left: 12px; right: 12px;
+  background: repeating-linear-gradient(180deg, transparent, transparent 24px, rgba(0,0,0,0.1) 25px);
+  pointer-events: none; z-index: 0;
 }
 
-.tech-item:hover {
-  background: rgba(211, 189, 242, 0.05);
-  border-color: rgba(211, 189, 242, 0.2);
-  transform: translateX(4px);
+/* Textos de tu formación */
+.label-content {
+  position: relative;
+  z-index: 1;
 }
-
-.tech-icon {
-  font-size: 1.2rem;
-  color: var(--neon-yellow);
+.spine-title {
+  font-family: 'Righteous', cursive;
+  font-size: 1.3rem;
+  color: #111;
+  margin-bottom: 2px;
 }
-
-.tech-item span {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-}
-/* Proyectos (Tarjetas orgánicas con Tilt 3D y bordes suaves) */
-.schema-card {
-  transform-style: preserve-3d;
-  background: var(--synth-card);
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  border-radius: 20px; /* Bordes generosamente redondeados */
-  overflow: hidden;
-  height: 100%;
-  transition: transform 0.1s, box-shadow 0.3s ease;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  backdrop-filter: blur(10px);
-}
-
-.schema-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 243, 255, 0.15);
-}
-
-.schema-card .schema-head {
-  background: rgba(17, 4, 38, 0.6);
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 243, 255, 0.15);
-}
-
-.schema-card .schema-head h3 {
-  color: var(--text-main);
-  font-size: 1.15rem;
-  margin: 0;
-  transform: translateZ(30px);
-}
-
-.schema-card .schema-head a {
-  color: var(--neon-yellow);
-  font-size: 1.2rem;
-  transition: color 0.3s;
-}
-.schema-card .schema-head a:hover { color: var(--neon-cyan); }
-
-.schema-row {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  font-size: 0.92rem;
-}
-
-.schema-row dt {
+.spine-subtitle {
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.8rem;
-  color: var(--neon-cyan);
-  min-width: 88px;
-  padding-top: 0.1rem;
+  color: #c23616; /* Color tinta de bolígrafo rojo */
+  font-weight: bold;
+  margin-bottom: 6px;
 }
-
-.schema-row dd { margin: 0; color: var(--text-muted); }
-
-/* Formación (Timeline con puntos circulares suaves) */
-.cyber-timeline-item {
-  position: relative;
-  padding-left: 2.5rem;
-  margin-bottom: 2.5rem;
-  border-left: 2px dashed rgba(255, 0, 127, 0.3);
-}
-.timeline-dot {
-  position: absolute;
-  left: -6px; top: 3px;
-  width: 12px; height: 12px;
-  background: var(--synth-bg);
-  border: 3px solid var(--neon-yellow);
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(254, 231, 21, 0.5);
-}
-.timeline-date {
-  font-family: 'IBM Plex Mono', monospace;
+.spine-desc {
+  font-family: 'Nunito', sans-serif;
   font-size: 0.85rem;
-  color: var(--neon-yellow);
-  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  color: #181b3a; /* Color tinta de bolígrafo azul oscuro */
+  margin-bottom: 0;
+  font-weight: 700;
 }
 
-/* Contacto y Formulario Fluido */
-.cyber-contact-link {
-  display: flex; align-items: center; gap: 1rem;
-  color: var(--text-main);
-  font-family: 'IBM Plex Mono', monospace;
-  text-decoration: none;
-  margin-bottom: 1.2rem;
-  padding: 1rem 1.2rem;
-  background: var(--synth-card);
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-}
-.cyber-contact-link i { color: var(--neon-yellow); font-size: 1.3rem; }
-.cyber-contact-link:hover {
-  border-color: var(--neon-pink);
-  background: rgba(255, 0, 127, 0.08);
-  transform: translateX(6px);
-  color: var(--text-main);
-  box-shadow: 0 8px 20px rgba(255, 0, 127, 0.2);
+/* Responsividad para móviles (Para que el texto no se rompa) */
+@media (max-width: 768px) {
+  .spine-grip { display: none; } /* Oculta la muesca en móvil para dar espacio al texto */
+  .label-main { padding: 10px 15px; }
+  .spine-title { font-size: 1.1rem; }
+  .spine-desc { font-size: 0.75rem; }
 }
 
-.cyber-form {
-  background: var(--synth-card);
-  padding: 2.5rem;
-  border: 1px solid rgba(0, 243, 255, 0.2);
-  border-radius: 24px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(12px);
+/* ==========================================================================
+   CONTACTO: MÁQUINA RETRO ALL-IN-ONE (FÓSFORO VERDE)
+   ========================================================================== */
+
+:root {
+  --c64-plastic: #d4d0c5;     /* Beige retro del plástico */
+  --c64-dark: #a8a49a;        /* Sombras del plástico */
+  --c64-bezel: #2a2a2a;       /* Borde negro alrededor de la pantalla */
+  --crt-green-bg: #0a120a;    /* Fondo oscuro de la pantalla */
+  --crt-green-text: #4af626;  /* Verde brillante fósforo */
 }
-.cyber-input-group { position: relative; }
-.cyber-input-group input, .cyber-input-group textarea {
-  width: 100%;
-  background: rgba(9, 3, 30, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  color: var(--text-main);
+
+.retro-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+/* --- 1. EL MONITOR (PARTE SUPERIOR) --- */
+.rm-monitor {
+  background: var(--c64-plastic);
+  width: 90%;
+  max-width: 650px;
+  border-radius: 15px 15px 0 0;
+  padding: 30px 30px 15px 30px;
+  border: 2px solid var(--c64-dark);
+  border-bottom: none;
+  box-shadow: 
+    inset -5px -5px 15px rgba(0,0,0,0.1),
+    inset 5px 5px 15px rgba(255,255,255,0.7),
+    0 20px 40px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 2;
+}
+
+.rm-monitor-inner {
+  background: var(--c64-bezel);
+  border-radius: 20px / 15px; /* Curvatura del tubo CRT */
+  padding: 20px;
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,0.9);
+}
+
+.rm-screen {
+  background: var(--crt-green-bg);
+  border-radius: 10px / 5px;
+  height: 380px;
+  padding: 25px;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.9);
+}
+
+/* Efecto de líneas de escaneo (Scanlines) */
+.crt-green-effect::after {
+  content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+  background-size: 100% 4px; z-index: 2; pointer-events: none;
+}
+
+.rm-logo {
+  text-align: center; font-family: 'Righteous', cursive; color: #555;
+  font-size: 0.8rem; margin-top: 15px; letter-spacing: 1px;
+}
+.rm-logo span { font-family: sans-serif; font-size: 0.5rem; letter-spacing: 2px; }
+
+
+/* --- ESTILOS DEL FORMULARIO VERDE --- */
+.rm-form {
+  position: relative; z-index: 3;
   font-family: 'IBM Plex Mono', monospace;
-  padding: 1rem 1.2rem;
-  transition: all 0.3s;
+  color: var(--crt-green-text);
+  text-shadow: 0 0 5px rgba(74, 246, 38, 0.6);
 }
-.cyber-input-group input:focus, .cyber-input-group textarea:focus {
-  outline: none;
-  border-color: var(--neon-cyan);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.25);
-  background: rgba(9, 3, 30, 0.8);
-}
-.cyber-input-group label {
-  position: absolute;
-  top: 1rem; left: 1.2rem;
-  color: var(--text-muted);
+
+.rm-title { font-size: 2rem; font-weight: bold; text-align: center; margin-bottom: 0; }
+.rm-subtitle { font-size: 0.9rem; text-align: center; margin-bottom: 10px; }
+.rm-divider { border-top: 2px dashed var(--crt-green-text); opacity: 1; margin-bottom: 20px; }
+
+.rm-prompt { font-weight: bold; }
+
+.rm-input-row { display: flex; align-items: center; margin-bottom: 12px; }
+.rm-input-row label { width: 140px; font-size: 0.9rem; flex-shrink: 0; }
+
+.rm-input {
+  background: transparent !important;
+  border: none;
+  border-bottom: 1px solid transparent;
+  color: var(--crt-green-text) !important;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 0.9rem;
-  pointer-events: none;
-  transition: all 0.3s;
+  padding: 2px 5px;
+  flex-grow: 1;
+  box-shadow: none !important;
+  text-shadow: inherit;
 }
-.cyber-input-group input:focus ~ label,
-.cyber-input-group input:not(:placeholder-shown) ~ label,
-.cyber-input-group textarea:focus ~ label,
-.cyber-input-group textarea:not(:placeholder-shown) ~ label {
-  top: -10px;
-  left: 1rem;
-  font-size: 0.75rem;
-  color: var(--neon-cyan);
-  background: var(--synth-bg);
-  padding: 0 0.4rem;
-  border-radius: 4px;
+.rm-input:focus { border-bottom: 1px solid var(--crt-green-text); outline: none; }
+.rm-input::placeholder { color: rgba(74, 246, 38, 0.3); }
+
+/* Para el selector del Motivo */
+.rm-select { appearance: none; -webkit-appearance: none; background: transparent; cursor: pointer; }
+.rm-select option { background: var(--crt-green-bg); color: var(--crt-green-text); }
+
+.rm-btn-submit {
+  background: transparent; border: none; color: var(--crt-green-text);
+  font-family: 'IBM Plex Mono', monospace; font-size: 1rem; cursor: pointer;
+  margin-top: 10px; display: block;
 }
+.rm-btn-submit:hover { text-shadow: 0 0 12px var(--crt-green-text); transform: scale(1.02); }
 
-.cyber-alert {
-  background: rgba(0, 243, 255, 0.1);
-  border: 1px solid var(--neon-cyan);
-  color: var(--neon-cyan);
-  font-family: 'IBM Plex Mono', monospace;
-  border-radius: 12px;
-}
+.rm-alert { background: transparent; border: 1px dashed var(--crt-green-text); color: var(--crt-green-text); margin-top: 20px; }
+
+/* Scrollbar verde */
+.rm-screen::-webkit-scrollbar { width: 10px; }
+.rm-screen::-webkit-scrollbar-track { background: #050a05; border-left: 1px solid #112211; }
+.rm-screen::-webkit-scrollbar-thumb { background: #1a401a; border: 1px solid #225522; }
 
 
-/* --- 07. FOOTER --- */
-.cyber-footer {
-  background: #03010c;
-  padding: 2.5rem 0;
-  border-top: 1px solid rgba(255, 0, 127, 0.15);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-}
-
-/* ==========================================================================
-   BOTÓN DEMO PARA TARJETAS DE PROYECTOS
-   ========================================================================== */
-.btn-demo {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--neon-cyan);
-  color: var(--neon-cyan);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem; /* Letra más pequeña */
-  font-weight: 500;
-  padding: 0.15rem 0.45rem; /* Menos relleno interno */
-  border-radius: 12px; /* Más compacto */
-  text-decoration: none;
-  transition: all 0.3s ease;
-  transform: translateZ(30px);
+/* --- 2. LA BASE CPU/TECLADO (PARTE INFERIOR) --- */
+.rm-base {
+  width: 100%;
+  max-width: 750px;
+  position: relative;
+  z-index: 1;
+  perspective: 800px; /* Necesario para inclinar el teclado */
 }
 
-.btn-demo:hover {
-  background: var(--neon-cyan);
-  color: var(--synth-bg);
-  box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
-  transform: translateZ(35px) translateY(-1px);
+/* Tapa superior de la CPU */
+.rm-base-top {
+  background: var(--c64-plastic);
+  border: 2px solid var(--c64-dark);
+  padding: 10px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 5px 10px rgba(255,255,255,0.5);
+}
+.rm-brand-plate { font-family: 'Righteous', cursive; color: #444; font-size: 1rem; }
+.rm-brand-plate span { font-family: sans-serif; font-size: 0.5rem; }
+
+/* Disquetera */
+.rm-floppy {
+  background: #333; padding: 5px 15px; border-radius: 2px;
+  border: 2px inset #222; display: flex; align-items: center; gap: 10px;
+}
+.rm-floppy-slot { width: 60px; height: 4px; background: #000; }
+.rm-floppy-led { width: 8px; height: 3px; background: #ff0000; box-shadow: 0 0 5px #ff0000; }
+
+/* Inclinación 3D del teclado */
+.rm-keyboard-area {
+  background: var(--c64-plastic);
+  border-left: 2px solid var(--c64-dark);
+  border-right: 2px solid var(--c64-dark);
+  padding: 30px 40px;
+  transform-origin: top center;
+  transform: rotateX(15deg); /* Da el aspecto inclinado característico */
+  box-shadow: inset 0 20px 20px rgba(0,0,0,0.05);
 }
 
-/* ==========================================================================
-   CORRECCIÓN DE CABECERA Y BOTÓN DEMO EN PROYECTOS
-   ========================================================================== */
-.schema-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.rm-keys-container {
+  display: flex; justify-content: center; gap: 20px;
 }
 
-.schema-head .d-flex {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  transform: translateZ(30px); /* Asegura la profundidad 3D en conjunto */
+/* Teclas Mecánicas (Tus Enlaces) */
+/* Teclas Mecánicas (Enlaces) con variables para Scroll Parallax */
+.rm-key {
+  display: flex; flex-direction: column; text-decoration: none;
+  width: 120px;
+  /* Variable que controlará el JS al scrollear */
+  --scroll-offset: 0px; 
+  /* Aplicamos el movimiento dinámico */
+  transform: translateY(var(--scroll-offset));
+  /* Transición rápida para suavizar los "saltos" de la rueda del ratón */
+  transition: transform 0.1s ease-out; 
 }
 
-.schema-head a:not(.btn-demo) {
-  color: var(--neon-cyan);
-  font-size: 1.2rem;
-  text-decoration: none;
-  transition: color 0.3s;
+.rm-key:hover { 
+  /* Sumamos 4px al offset actual para mantener el efecto físico de presionar la tecla */
+  transform: translateY(calc(var(--scroll-offset) + 4px)); 
 }
 
-.schema-head a:not(.btn-demo):hover {
-  color: var(--neon-pink);
+.rm-key-top {
+  background: #e6e4df;
+  border: 1px solid #aaa;
+  border-radius: 4px 4px 0 0;
+  padding: 15px 0;
+  text-align: center;
+  font-family: 'Righteous', cursive;
+  color: #333;
+  font-size: 1rem;
+  box-shadow: inset 2px 2px 5px rgba(255,255,255,1), inset -2px -2px 5px rgba(0,0,0,0.1);
+}
+.rm-key-front {
+  background: #b5b2a9;
+  height: 20px;
+  border-radius: 0 0 4px 4px;
+  border: 1px solid #999;
+  border-top: none;
+  box-shadow: inset 0 -3px 5px rgba(0,0,0,0.2);
+}
+
+/* Perfil frontal de la máquina */
+.rm-base-front {
+  background: #a8a49a;
+  height: 30px;
+  border-radius: 0 0 8px 8px;
+  border: 2px solid #888;
+  border-top: none;
+  box-shadow: 0 15px 20px rgba(0,0,0,0.5);
+}
+
+/* Responsividad para la máquina */
+@media (max-width: 768px) {
+  .rm-input-row { flex-direction: column; align-items: flex-start; }
+  .rm-input { width: 100%; border-bottom: 1px solid rgba(74, 246, 38, 0.4); margin-top: 5px; }
+  .rm-keys-container { flex-direction: column; align-items: center; }
+  .rm-key { width: 80%; }
+}
+/* --- 08. FOOTER --- */
+.city-footer { background: #111; padding: 4rem 0 2rem 0; border-top: 4px solid var(--sunset-orange); }
+.social-links a { color: #fff; font-size: 1.8rem; transition: 0.3s; }
+.social-links a:hover { color: var(--sunset-pink); transform: translateY(-5px); display: inline-block; }
+
+
+/* --- 09. MEDIA QUERIES (RESPONSIVE) --- */
+@media (max-width: 991px) {
+  .player-left { border-right: none; border-bottom: 1px solid var(--glass-border); }
+}
+
+@media (max-width: 768px) {
+  .album-art-wrapper { width: 200px; height: 200px; margin: 0 auto; }
+  .vinyl-record-lg { width: 190px; height: 190px; right: -30px; }
+  .playback-controls { gap: 1rem; }
+  .track-title { font-size: 1.8rem; }
+  .city-section { padding: 4rem 0; }
 }
